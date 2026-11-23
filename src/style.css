@@ -1,0 +1,223 @@
+/* ── Design tokens ─────────────────────────────────────────── */
+:root {
+  --p-gray-50: oklch(97.8% 0.004 240);
+  --p-gray-100: oklch(95% 0.006 240);
+  --p-gray-200: oklch(90.5% 0.008 240);
+  --p-side-900: oklch(27% 0.03 255);
+  --p-ink-900: oklch(26% 0.02 255);
+  --p-ink-500: oklch(51% 0.018 255);
+  --p-ink-400: oklch(62% 0.014 255);
+  --p-orange-600: oklch(60% 0.16 50);
+  --p-orange-700: oklch(52% 0.15 48);
+  --p-orange-100: oklch(94% 0.045 55);
+  --p-blue-600: oklch(52% 0.13 255);
+  --p-blue-100: oklch(93% 0.03 255);
+  --p-green-600: oklch(50% 0.11 155);
+  --p-green-100: oklch(93% 0.04 155);
+  --p-red-600: oklch(55% 0.18 25);
+  --p-red-100: oklch(93% 0.04 25);
+  --p-violet-100: oklch(93% 0.035 300);
+  --p-violet-700: oklch(46% 0.14 300);
+
+  --bg: var(--p-gray-50);
+  --surface: oklch(99.2% 0.002 240);
+  --surface-2: var(--p-gray-100);
+  --border: var(--p-gray-200);
+  --text: var(--p-ink-900);
+  --text-secondary: var(--p-ink-500);
+  --text-faint: var(--p-ink-400);
+  --accent: var(--p-orange-600);
+  --accent-strong: var(--p-orange-700);
+  --accent-soft: var(--p-orange-100);
+  --danger: var(--p-red-600);
+  --danger-soft: var(--p-red-100);
+
+  --radius-s: 8px;
+  --radius-m: 12px;
+  --radius-l: 16px;
+  --shadow-card: 0 1px 2px oklch(26% 0.02 255 / 0.05), 0 4px 16px oklch(26% 0.02 255 / 0.06);
+  --shadow-pop: 0 8px 32px oklch(26% 0.02 255 / 0.16);
+
+  --font: 'Golos Text', 'Segoe UI', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', 'Consolas', monospace;
+
+  --z-nav: 10;
+  --z-modal: 40;
+  --z-toast: 50;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ── Buttons ───────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-m);
+  padding: 9px 16px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.2;
+  transition: transform 0.15s ease-out, background-color 0.15s ease-out, border-color 0.15s ease-out;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--accent-strong);
+}
+
+.btn-primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-ghost {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background: var(--surface-2);
+  border-color: var(--text-faint);
+}
+
+.btn-danger {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: var(--danger);
+  color: #fff;
+}
+
+.btn-sm {
+  padding: 6px 11px;
+  font-size: 13px;
+  border-radius: var(--radius-s);
+}
+
+/* ── Forms ─────────────────────────────────────────────────── */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.field label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.field input,
+.field select,
+.field textarea {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-s);
+  background: var(--surface);
+  padding: 9px 11px;
+  font-size: 14.5px;
+  transition: border-color 0.15s ease-out;
+  width: 100%;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.field .field-error {
+  font-size: 12.5px;
+  color: var(--danger);
+}
+
+/* ── Cards / badges ────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-card);
+}
+
+.mono {
+  font-family: var(--mono);
+}
+
+/* ── Motion ────────────────────────────────────────────────── */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.18s ease-out, transform 0.18s ease-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: scale(0.97);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
